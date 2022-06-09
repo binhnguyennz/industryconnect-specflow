@@ -1,0 +1,16 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TurnupPortal", "TurnupPortal\TurnupPortal.csproj", "{219C7C4F-5FAB-4C45-AE8B-D2F7E66B1086}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{219C7C4F-5FAB-4C45-AE8B-D2F7E66B1086}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{219C7C4F-5FAB-4C45-AE8B-D2F7E66B1086}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{219C7C4F-5FAB-4C45-AE8B-D2F7E66B1086}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{219C7C4F-5FAB-4C45-AE8B-D2F7E66B1086}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
