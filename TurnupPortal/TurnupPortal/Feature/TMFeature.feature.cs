@@ -75,14 +75,14 @@ namespace TurnupPortal.Feature
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("1 Create time and material record with valid data")]
+        [NUnit.Framework.DescriptionAttribute("1 Create time and material record with valid data //data?")]
         [NUnit.Framework.CategoryAttribute("create")]
-        public async System.Threading.Tasks.Task _1CreateTimeAndMaterialRecordWithValidData()
+        public async System.Threading.Tasks.Task _1CreateTimeAndMaterialRecordWithValidDataData()
         {
             string[] tagsOfScenario = new string[] {
                     "create"};
             System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("1 Create time and material record with valid data", null, tagsOfScenario, argumentsOfScenario, featureTags);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("1 Create time and material record with valid data //data?", null, tagsOfScenario, argumentsOfScenario, featureTags);
 #line 8
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
@@ -150,6 +150,49 @@ this.ScenarioInitialize(scenarioInfo);
 #line hidden
 #line 19
     await testRunner.ThenAsync(string.Format("The record should have the updated \'{0}\', \'{1}\', \'{2}\'", description, code, price), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
+#line hidden
+            }
+            await this.ScenarioCleanupAsync();
+        }
+        
+        [NUnit.Framework.TestAttribute()]
+        [NUnit.Framework.DescriptionAttribute("3 delete time and material record")]
+        [NUnit.Framework.CategoryAttribute("delete")]
+        [NUnit.Framework.TestCaseAttribute("Laptop", "Macbook Pro M1 2020", null)]
+        public async System.Threading.Tasks.Task _3DeleteTimeAndMaterialRecord(string code, string description, string[] exampleTags)
+        {
+            string[] @__tags = new string[] {
+                    "delete"};
+            if ((exampleTags != null))
+            {
+                @__tags = System.Linq.Enumerable.ToArray(System.Linq.Enumerable.Concat(@__tags, exampleTags));
+            }
+            string[] tagsOfScenario = @__tags;
+            System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new System.Collections.Specialized.OrderedDictionary();
+            argumentsOfScenario.Add("Code", code);
+            argumentsOfScenario.Add("Description", description);
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("3 delete time and material record", null, tagsOfScenario, argumentsOfScenario, featureTags);
+#line 28
+this.ScenarioInitialize(scenarioInfo);
+#line hidden
+            if ((TagHelper.ContainsIgnoreTag(tagsOfScenario) || TagHelper.ContainsIgnoreTag(featureTags)))
+            {
+                testRunner.SkipScenario();
+            }
+            else
+            {
+                await this.ScenarioStartAsync();
+#line 29
+    await testRunner.GivenAsync("I logged into Turnup portal successfully", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+#line hidden
+#line 30
+    await testRunner.WhenAsync("I navigate to Time and Material page", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 31
+    await testRunner.WhenAsync(string.Format("I delete an extisting Time and Material record matching \'{0}\' & \'{1}\'", code, description), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+#line hidden
+#line 32
+    await testRunner.ThenAsync(string.Format("The record matching \'{0}\' & \'{1}\' should be deleted successfully", code, description), ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden
             }
             await this.ScenarioCleanupAsync();

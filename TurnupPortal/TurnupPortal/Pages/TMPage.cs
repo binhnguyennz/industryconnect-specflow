@@ -51,9 +51,7 @@ namespace TurnupPortal.Pages
             gotoLastPageButton.Click();
 
             WaitHelpers.WaitToBeVisible(driver, "XPath", "//tbody/tr[last()]/td[1]", 5);
-            Assert.That((driver.FindElement(By.XPath("//tbody/tr[last()]/td[1]")).Text) == "Selenium Webdriver", "Record hasn't been created successfully.");
-            
-        }
+		}
 
         public void EditRecord(IWebDriver driver, string description, string code, string price)
         {
@@ -70,8 +68,8 @@ namespace TurnupPortal.Pages
             Thread.Sleep(1000);
             WaitHelpers.WaitToBeClickable(driver, "XPath", "//tbody/tr[last()]/td[5]/a[1]", 5);
             //Identify a record and click edit
-            IWebElement recordEditButton = driver.FindElement(By.XPath("//tbody/tr[last()]/td[5]/a[1]"));
-            recordEditButton.Click();
+            IWebElement editButton = driver.FindElement(By.XPath("//tbody/tr[last()]/td[5]/a[1]"));
+            editButton.Click();
 
             WaitHelpers.WaitToBeVisible(driver, "Id", "Code", 5);
             //Edit Code
@@ -130,7 +128,7 @@ namespace TurnupPortal.Pages
         /*
         public string GetNewPrice(IWebDriver driver)
         {
-	        IWebElement newPrice = driver.FindElement(By.XPath("//*[@id='tmsGrid']/div[3]/table/tbody/tr[last()]/td[4]"));
+	        IWebElement newPrice = driver.FindElement(By.XPath("//tbody/tr[last()]/td[4]"));
 	        return newPrice.Text;
         }
         */
@@ -153,7 +151,7 @@ namespace TurnupPortal.Pages
 	        return editedPrice.Text;
         }
 
-        public void DeleteRecord(IWebDriver driver)
+        public void DeleteRecord(IWebDriver driver, string code)
         {
             //Click last page*/
             WaitHelpers.WaitToBeClickable(driver, "XPath", "//span[contains(text(),'Go to the last page')]", 2);
@@ -165,27 +163,39 @@ namespace TurnupPortal.Pages
             Thread.Sleep(1000);
             WaitHelpers.WaitToBeClickable(driver, "XPath", "//tbody/tr[last()]/td[5]/a[2]", 2);
 
-            //Read and store the first record's Description
-            string textDeletedCode = driver.FindElement(By.XPath("//tbody/tr[last()]/td[1]")).Text;
-            string textDeletedDescription = driver.FindElement(By.XPath("//tbody/tr[last()]/td[3]")).Text;
+            string deletedCode = driver.FindElement(By.XPath("//tbody/tr[last()]/td[1]")).Text;
+            //string deletedDescription = driver.FindElement(By.XPath("//tbody/tr[last()]/td[3]")).Text;
+            
+            if (deletedCode==code)
+            {
+	            //Select last record of TurnUp table and Click Delete button.
+	            driver.FindElement(By.XPath("//tbody/tr[last()]/td[5]/a[2]")).Click();
+	            //Switch to popup window and click OK button.
+	            driver.SwitchTo().Alert().Accept();
+	            //SwitchTo .Alert(), .Window(), .Frame() 
+	            //actions: Text, Accept(), Dismiss(), SendKeys("abc"), SetAuthenticationCredentials()
+	            
+	            //WaitHelpers.WaitToBeVisible(driver, "XPath", "//tbody/tr[last()]/td[1]", 2);
+	            Thread.Sleep(1000);
+            }
+            else
+            {
+	            Assert.Fail("Couldn't find the expected record.");
+	            driver.Close();
+            }
+            //Read and store the last record's details
+        }
 
-            //Select (a random) first record on TurnUp table and Click Delete button.
-            driver.FindElement(By.XPath("//tbody/tr[last()]/td[5]/a[2]")).Click();
+        public string GetCurrentCode(IWebDriver driver)
+        {
+	        IWebElement currentCode = driver.FindElement(By.XPath("//tbody/tr[last()]/td[1]"));
+	        return currentCode.Text;
+        }
 
-            //Switch to popup window and click OK button.
-            driver.SwitchTo().Alert().Accept();
-
-            //SwitchTo .Alert(), .Window(), .Frame() 
-            //actions: Text, Accept(), Dismiss(), SendKeys("abc"), SetAuthenticationCredentials()
-
-            //WaitHelpers.WaitToBeVisible(driver, "XPath", "//*[@id='tmsGrid']/div[3]/table/tbody/tr[last()]/td[1]", 2);
-            Thread.Sleep(1000);
-            //Check the record if deleted successfully by comparing deleted record Description != current first record Description)
-            string textCurrentCode = driver.FindElement(By.XPath("//*[@id='tmsGrid']/div[3]/table/tbody/tr[last()]/td[1]")).Text;
-            string textCurrentDescription = driver.FindElement(By.XPath("//*[@id='tmsGrid']/div[3]/table/tbody/tr[last()]/td[3]")).Text;
-
-            Assert.That(textDeletedCode != textCurrentCode, "Text code Condition is not matching. Delete record Failed");
-            Assert.That(textDeletedDescription != textCurrentDescription, "Description condition is not matching. Delete record Failed");
+        public string GetCurrentDescription(IWebDriver driver)
+        {
+	        IWebElement currentDescription = driver.FindElement(By.XPath("//tbody/tr[last()]/td[3]"));
+	        return currentDescription.Text;
         }
 	}
 }

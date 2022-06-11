@@ -14,48 +14,81 @@ namespace TurnupPortal.Pages
 			Thread.Sleep(1000);
 
 			//Click button Create
-			driver.FindElement(By.LinkText("Create")).Click();
+			IWebElement buttonCreate = driver.FindElement(By.LinkText("Create"));
+				buttonCreate.Click();
 			Thread.Sleep(1000);
 
 			//Send text to Name Textbox
-			driver.FindElement(By.Id("Name")).SendKeys("John Lennon");
+			IWebElement nameTextbox = driver.FindElement(By.Id("Name"));
+				nameTextbox.SendKeys("John Lennon");
 
 			//Send text to username textbox
-			driver.FindElement(By.Id("Username")).SendKeys("johnlennon");
+			IWebElement usernameTextbox = driver.FindElement(By.Id("Username"));
+				usernameTextbox.SendKeys("johnlennon");
 
 			//Send text to Contact textbox
-			driver.FindElement(By.Id("EditContactButton")).Click();
+			IWebElement contactTextbox = driver.FindElement(By.Id("EditContactButton"));
+				contactTextbox.Click();
+			
+			//Switch to Contact frame
 			driver.SwitchTo().Frame(0);
-			driver.FindElement(By.Id("FirstName")).SendKeys("John");
-			driver.FindElement(By.Id("LastName")).SendKeys("Lennon");
-			driver.FindElement(By.Id("PreferedName")).SendKeys("John");
-			driver.FindElement(By.Id("Phone")).SendKeys("022090355389");
-			driver.FindElement(By.Id("Mobile")).SendKeys("022090223389");
-			driver.FindElement(By.Id("email")).SendKeys("johnlennon@gmail.com");
+			
+			//Input contact
+			IWebElement firstName = driver.FindElement(By.Id("FirstName"));
+				firstName.SendKeys("John");
+			
+			IWebElement lastName = driver.FindElement(By.Id("LastName"));
+				lastName.SendKeys("Lennon");
+			
+			IWebElement preferedName = driver.FindElement(By.Id("PreferedName")); 
+				preferedName.SendKeys("John");
+			
+			IWebElement phone = driver.FindElement(By.Id("Phone"));
+				phone.SendKeys("022090355389");
+			
+			IWebElement mobile = driver.FindElement(By.Id("Mobile"));
+				mobile.SendKeys("022090223389");
+			
+			IWebElement email = driver.FindElement(By.Id("email"));
+				email.SendKeys("johnlennon@gmail.com");
 			//address
-			driver.FindElement(By.Id("Street")).SendKeys("6 Liverpool Street");
-			driver.FindElement(By.Id("City")).SendKeys("Auckland");
-			driver.FindElement(By.Id("Postcode")).SendKeys("1001");
-			driver.FindElement(By.Id("Country")).SendKeys("New Zealand");
-			driver.FindElement(By.Id("submitButton")).Click();
+			IWebElement street = driver.FindElement(By.Id("Street"));
+				street.SendKeys("6 Liverpool Street");
+
+			IWebElement city = driver.FindElement(By.Id("City"));
+				city.SendKeys("Auckland");
+			
+				
+			IWebElement postCode = driver.FindElement(By.Id("Postcode"));
+				postCode.SendKeys("1001");
+			
+			IWebElement country = driver.FindElement(By.Id("Country"));
+				country.SendKeys("New Zealand");
+			
+			IWebElement submitButton = driver.FindElement(By.Id("submitButton"));
+				submitButton.Click();
 
 			//switch back to window
 			driver.SwitchTo().DefaultContent();
 			Thread.Sleep(1000);
 
 			//Send text to Password textbox
-			driver.FindElement(By.Id("Password")).SendKeys("T3st@n@lyst");
+			IWebElement password = driver.FindElement(By.Id("Password"));
+				password.SendKeys("T3st@n@lyst");
 
 			//Send text to Retype passowrd textbox
-			driver.FindElement(By.Id("RetypePassword")).SendKeys("T3st@n@lyst");
+			IWebElement retypePassword = driver.FindElement(By.Id("RetypePassword"));
+				retypePassword.SendKeys("T3st@n@lyst");
 
 			//Click checkbox IsAdmin
-			driver.FindElement(By.Id("IsAdmin")).Click();
+			IWebElement isAdminCheckbox = driver.FindElement(By.Id("IsAdmin"));
+				isAdminCheckbox.Click();
 
 			//Select Vehicle
-			driver.FindElement(By.XPath("//input[@name='VehicleId_input']")).SendKeys("Honda");
+			IWebElement vehicle = driver.FindElement(By.XPath("//input[@name='VehicleId_input']"));
+				vehicle.SendKeys("Honda");
 
-			//View screen at button "Back to List"
+			//Move screen to button "Back to List"
 			Actions action = new Actions(driver);
 			IWebElement moveToBackToList = driver.FindElement(By.LinkText("Back to List"));
 			action.MoveToElement(moveToBackToList);
@@ -64,24 +97,28 @@ namespace TurnupPortal.Pages
 			Thread.Sleep(1000);
 
 			//Click on Groups textbox
-			driver.FindElement(By.XPath("//div[@class='k-multiselect-wrap k-floatwrap']")).Click();
+			IWebElement groupTextbox = driver.FindElement(By.XPath("//div[@class='k-multiselect-wrap k-floatwrap']"));
+				groupTextbox.Click();
 			Thread.Sleep(1000);
 
 			//Hover popup list and click on nztest option
-			IWebElement childElement = driver.FindElement(By.XPath("//li[normalize-space()='nztest']"));
-			action.MoveToElement(childElement).Perform();
+			IWebElement groupOptions = driver.FindElement(By.XPath("//li[normalize-space()='nztest']"));
+			action.MoveToElement(groupOptions).Perform();
 			Thread.Sleep(1000);
 			action.Click().Build().Perform();
 
 			//Click Save button
-			driver.FindElement(By.Id("SaveButton")).Click();
+			IWebElement saveButton = driver.FindElement(By.Id("SaveButton"));
+				saveButton.Click();
 
 			//Click Back to List
-			driver.FindElement(By.LinkText("Back to List")).Click();
+			IWebElement backToListButton = driver.FindElement(By.LinkText("Back to List"));
+				backToListButton.Click();
 			Thread.Sleep(1000);
 
 			//Click go to Last page
-			driver.FindElement(By.XPath("//span[contains(text(),'Go to the last page')]")).Click();
+			IWebElement gotoLastPageButton = driver.FindElement(By.XPath("//span[contains(text(),'Go to the last page')]"));
+				gotoLastPageButton.Click();
 			Thread.Sleep(1000);
 
 			//Check if record created.

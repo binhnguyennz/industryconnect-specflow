@@ -1,8 +1,4 @@
-﻿using OpenQA.Selenium;
-using OpenQA.Selenium.Chrome;
-using TurnupPortal.Pages;
-using System.Threading;
-using System;
+﻿using TurnupPortal.Pages;
 using TurnupPortal.Utilities;
 using NUnit.Framework;
 
@@ -37,7 +33,7 @@ namespace TurnupPortal.Tests // Note: actual namespace depends on the project na
         {
             homePageObj.GoToTMPage(driver);
             //Delete TM
-            tmPageObj.DeleteRecord(driver);
+            tmPageObj.DeleteRecord(driver,"null");
         }
     }
 }

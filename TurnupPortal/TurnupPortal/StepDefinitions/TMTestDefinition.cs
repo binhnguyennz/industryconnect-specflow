@@ -79,5 +79,23 @@ namespace TurnupPortal.StepDefinitions
             Assert.That(editedPrice == (p3.ToString("C", CultureInfo.CurrentCulture)),"Expected price and actual price do not match. Record hasn't been edited successfully.");
             driver.Close();
         }
+        
+        [When(@"I delete an extisting Time and Material record matching '(.*)' & '(.*)'")]
+        public void WhenIDeleteAnExtistingTimeAndMaterialRecordMatching(string code, string description)
+        {
+            TMPage tmPageObj = new TMPage();
+            tmPageObj.DeleteRecord(driver, code);
+        }
+        
+        [Then(@"The record matching '(.*)' & '(.*)' should be deleted successfully")]
+        public void ThenTheRecordMatchingShouldBeDeletedSuccessfully(string p1, string p2)
+        {
+            TMPage tmPageObj = new TMPage();
+            string currentCode = tmPageObj.GetCurrentCode(driver);
+            string currentDescription = tmPageObj.GetCurrentDescription(driver);
+            Assert.That(currentCode != p1, "Expected code and actual code do not match. Delete record Failed");
+            Assert.That(currentDescription != p2, "Expected description and actual description do not match. Delete record Failed");
+            driver.Close();
+        }
     }
 }

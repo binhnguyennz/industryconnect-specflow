@@ -5,7 +5,7 @@ I would like to create, edit and delete Time and Meterialrecords
 so that i can manage Employee's time and materials successfully
 
 @create
-Scenario: 1 Create time and material record with valid data
+Scenario: 1 Create time and material record with valid data //data?
     Given I logged into Turnup portal successfully
     When I navigate to Time and Material page
     When I created a new Time and Material record
@@ -24,3 +24,13 @@ Scenario Outline: 2 edit time and material record with valid data
     | Macbook pro M1 2020 | Laptop | 2499  |
     | Iphone 13 Pro Max   | Phone  | 1300  | 
 
+@delete
+Scenario Outline: 3 delete time and material record
+    Given I logged into Turnup portal successfully
+    When I navigate to Time and Material page
+    When I delete an extisting Time and Material record matching '<Code>' & '<Description>'
+    Then The record matching '<Code>' & '<Description>' should be deleted successfully
+    
+    Examples:
+      | Code   | Description         |
+      | Laptop | Macbook Pro M1 2020 |
