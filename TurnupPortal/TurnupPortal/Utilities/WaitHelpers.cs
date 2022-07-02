@@ -30,7 +30,7 @@ namespace TurnupPortal.Utilities
         {
             var wait = new WebDriverWait(driver, new TimeSpan(0, 0, seconds));
 
-            if (locator == "XPath")
+            if (locator == "XPath" | locator == "Xpath")
             {
                 wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementIsVisible(By.XPath(locatorValue)));
             }

@@ -56,11 +56,9 @@ namespace TurnupPortal.Pages
         public void EditRecord(IWebDriver driver, string description, string code, string price)
         {
             //EDIT A RECORD
-            //
             //Click last page*/
 
             WaitHelpers.WaitToBeClickable(driver, "XPath", "//span[contains(text(),'Go to the last page')]", 5);
-
             Thread.Sleep(1000);
             IWebElement gotoLastPageButton2 = driver.FindElement(By.XPath("//span[contains(text(),'Go to the last page')]"));
             gotoLastPageButton2.Click();
@@ -170,9 +168,11 @@ namespace TurnupPortal.Pages
             {
 	            //Select last record of TurnUp table and Click Delete button.
 	            driver.FindElement(By.XPath("//tbody/tr[last()]/td[5]/a[2]")).Click();
-	            //Switch to popup window and click OK button.
+
+                //Switch to popup window and click OK button.
 	            driver.SwitchTo().Alert().Accept();
-	            //SwitchTo .Alert(), .Window(), .Frame() 
+
+                //SwitchTo .Alert(), .Window(), .Frame() 
 	            //actions: Text, Accept(), Dismiss(), SendKeys("abc"), SetAuthenticationCredentials()
 	            
 	            //WaitHelpers.WaitToBeVisible(driver, "XPath", "//tbody/tr[last()]/td[1]", 2);
