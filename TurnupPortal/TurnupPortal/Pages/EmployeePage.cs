@@ -13,6 +13,8 @@ namespace TurnupPortal.Pages
 		{
 			IWebElement buttonCreate = driver.FindElement(By.LinkText("Create"));
 			IWebElement contactTextbox = driver.FindElement(By.Id("EditContactButton"));
+			IWebElement firstName = driver.FindElement(By.Id("FirstName"));
+
 			Thread.Sleep(1000);
       
 			//Click button Create
@@ -36,7 +38,7 @@ namespace TurnupPortal.Pages
 			driver.SwitchTo().Frame(0);
 			
 			//Input contact
-			IWebElement firstName = driver.FindElement(By.Id("FirstName"));
+
 			firstName.SendKeys("John");
 			
 			IWebElement lastName = driver.FindElement(By.Id("LastName"));
