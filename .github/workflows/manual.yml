@@ -2,7 +2,7 @@
 
 name: Manual workflow
 
-run-name: "Jira remote trigger"
+run-name: 'Jira remote trigger'
 
 # Controls when the action will run. Workflow runs when manually triggered using the UI
 # or API.
